@@ -44,6 +44,20 @@
     grid-area: 4 / 4 / 4 / 7;
 }
 
+.box{
+    border: 1px solid black;
+
+    
+}
+
+.box-parent{
+    grid-area: 2 / 4 / 5 / 7;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+}
+
+
 
 
 

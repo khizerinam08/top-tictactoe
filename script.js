@@ -5,47 +5,52 @@ let gameState = [[ 0, 0, 0], [0, 0, 0], [0, 0, 0]];
 function playGame(){
     let gameOver = false;
     let turn = 0;
+    let winner = -1;
+    let buttonPressed = 0;
 
+    
     while(!gameOver){
-        
-            let num1 = parseInt(prompt("Enter row number: "))-1;
-            let num2 = parseInt(prompt("Enter column number: "))-1;
+
+            while(!buttonPressed){
+
+            }
             if(turn==0){
                 gameState[num1][num2] = 1;
                 turn = 1;
-                console.log(gameState);
+                
             }
             else{
                 gameState[num1][num2] = 2;
                 turn = 0;
-                console.log(gameState);
+            }
+            console.log(gameState);
+            winner = checkGame();
+
+            if(winner === 1 || winner === 2){
+                gameOver = true;
+                console.log("Player " + winner + " is the winner");
             }
 
 
     }
 }
 
-function gameOver(){
+function checkGame(){
     for(let i = 0; i<3; i++){
-        let count1 = 0;
-        let count2 = 0;
-        for(let j = 0; j<3; j++){
-            if(gameState[i][j]==1){
-                count1++;
-            }
-            else if(gameState[i][j]==2){
-                count2++;
-            }
+        if(gameState[i][0]!==0 && gameState[i][0] === gameState[i][1] && gameState[i][1] === gameState[i][2]){
+            return gameState[i][0];
         }
+        else if(gameState[0][i]!==0 && gameState[0][i] === gameState[1][i] && gameState[1][i] === gameState[2][i]){
+            return gameState[0][i];
+        }
+
     }
-    if(count1==3){
-        return "Player 1 wins";
-    }
-    else if(count2==3){
-        return "Player 2 wins"
-    }
-    else{
-        return "Tie"
-    }
+        if(gameState[1][1] !== 0 && gameState[0][0] === gameState[1][1] === gameState[2][2]){
+            return gameState[1][1];
+        }
+        else if(gameState[1][1] !== 0 && gameState[2][0] === gameState[1][1] === gameState[0][2]){
+            return gameState[1][1];
+        }
+        
 }
 playGame();
